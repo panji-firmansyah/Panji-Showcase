@@ -43,10 +43,44 @@ body {
     padding: 0 2rem;
 }
 
+/* ─── Custom Cursor ───────────────────────────────────────── */
+.cursor-dot {
+    width: 6px;
+    height: 6px;
+    background-color: var(--accent);
+    backdrop-filter: blur(2px);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.cursor-outline {
+    width: 40px;
+    height: 40px;
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -50%);
+    pointer-events: none;
+    z-index: 9998;
+    transition: width 0.3s ease-out, height 0.3s ease-out, background-color 0.3s ease-out;
+}
+
+@media (pointer: fine) {
+    body, a, button {
+        cursor: none;
+    }
+}
+
 /* ─── Header ──────────────────────────────────────────────── */
 .header {
     padding: 7rem 0 4.5rem;
-    animation: fadeSlideUp 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .header-eyebrow {
@@ -99,10 +133,7 @@ body {
     overflow: hidden;
 }
 
-/* Staggered entrance animation */
-.card:nth-child(1) { animation: fadeSlideUp 0.7s 0.15s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.card:nth-child(2) { animation: fadeSlideUp 0.7s 0.25s cubic-bezier(0.22, 1, 0.36, 1) both; }
-.card:nth-child(3) { animation: fadeSlideUp 0.7s 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+/* Grid Layout animations handled by GSAP */
 
 /* Inset highlight border on hover */
 .card::before {
@@ -121,7 +152,6 @@ body {
 
 .card:hover {
     background-color: var(--card-hover);
-    transform: translateY(-5px);
     box-shadow:
         0 16px 32px -12px rgba(0, 0, 0, 0.6),
         0 0 0 1px rgba(255, 255, 255, 0.1);
@@ -202,12 +232,10 @@ body {
     gap: 0.45rem;
 }
 
-/* ─── Footer ──────────────────────────────────────────────── */
 .footer {
     margin-top: auto;
     padding: 2rem 0;
     border-top: 1px solid var(--border-color);
-    animation: fadeSlideUp 0.7s 0.4s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
 .footer p {
@@ -228,17 +256,7 @@ body {
     color: var(--text-primary);
 }
 
-/* ─── Animations ──────────────────────────────────────────── */
-@keyframes fadeSlideUp {
-    from {
-        opacity: 0;
-        transform: translateY(18px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* removed CSS fadeSlideUp in favor of GSAP */
 
 /* ─── Responsive ──────────────────────────────────────────── */
 @media (max-width: 768px) {
