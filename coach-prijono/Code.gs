@@ -4,7 +4,7 @@
 // ============================================================
 
 // ─── CONFIGURATION (edit these) ──────────────────────────────
-const SPREADSHEET_ID = 'YOUR_SPREADSHEET_ID_HERE'; // Replace with your Google Sheet ID
+const SPREADSHEET_ID = '1ATsZZYhEvX6KFd_k1t8JBStY_o13UWiPL6JuSsYsEV0'; // Google Sheet ID
 const SHEET_NAME = 'Registrations';                  // Must match your sheet tab name
 // ─────────────────────────────────────────────────────────────
 
@@ -16,7 +16,13 @@ function doPost(e) {
       return buildResponse({ result: 'error', message: 'Sheet not found: ' + SHEET_NAME });
     }
 
-    const data = JSON.parse(e.postData.contents);
+    // Support both form-encoded (e.parameter) and JSON (e.postData.contents)
+    var data;
+    if (e.parameter && e.parameter.fullName) {
+      data = e.parameter;
+    } else {
+      data = JSON.parse(e.postData.contents);
+    }
 
     const timestamp = new Date().toLocaleString('id-ID', { timeZone: 'Asia/Jakarta' });
 
@@ -49,6 +55,32 @@ function buildResponse(payload) {
   return ContentService
     .createTextOutput(JSON.stringify(payload))
     .setMimeType(ContentService.MimeType.JSON);
+}
+
+// ─── TEST FUNCTION ──────────────────────────────────────────
+// Run this from the Apps Script editor to verify everything works.
+// Select "testDoPost" from the function dropdown, then click Run.
+// Check the Execution Log (View → Execution log) for results.
+function testDoPost() {
+  // Test with form-encoded format (same as browser sends)
+  const fakeEvent = {
+    parameter: {
+      fullName: 'Test Form-Encoded',
+      email: 'test@example.com',
+      phone: '081234567890',
+      company: 'Test Corp',
+      jobTitle: 'Manager',
+      hearAbout: 'Google Search',
+      message: 'Test dari Apps Script editor (form-encoded)'
+    },
+    postData: {
+      contents: 'fullName=Test&email=test@example.com'
+    }
+  };
+
+  const result = doPost(fakeEvent);
+  Logger.log(result.getContent());
+  // If successful, check your Google Sheet — a new row should appear.
 }
 
 // ============================================================
