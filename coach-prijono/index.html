@@ -645,6 +645,197 @@
       letter-spacing: 0.04em;
     }
 
+    /* ─── REGISTRATION FORM ─── */
+    .reg-form-wrapper {
+      max-width: 520px;
+      margin: 36px auto 0;
+      text-align: left;
+    }
+
+    .reg-form-header {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+
+    .reg-form-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--red);
+      margin-bottom: 6px;
+    }
+
+    .reg-form-subtitle {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+    }
+
+    .form-row {
+      margin-bottom: 20px;
+    }
+
+    .form-row-2col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .form-group label {
+      display: block;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 400;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 6px;
+    }
+
+    .form-group .required {
+      color: var(--red);
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--white);
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.12);
+      padding: 12px 14px;
+      transition: border-color 0.2s, background 0.2s;
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: rgba(255,255,255,0.25);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--red);
+      background: rgba(255,255,255,0.1);
+    }
+
+    .form-group input.invalid,
+    .form-group select.invalid {
+      border-color: #e74c3c;
+    }
+
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg width='12' height='8' viewBox='0 0 12 8' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M1 1.5L6 6.5L11 1.5' stroke='rgba(255,255,255,0.4)' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 14px center;
+      padding-right: 40px;
+      cursor: pointer;
+    }
+
+    .form-group select option {
+      background: var(--ink);
+      color: var(--white);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 80px;
+    }
+
+    .form-submit {
+      display: block;
+      width: 100%;
+      background: var(--red);
+      color: var(--white);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      padding: 16px 40px;
+      border: none;
+      cursor: pointer;
+      transition: background 0.2s;
+      margin-top: 8px;
+    }
+
+    .form-submit:hover { background: var(--red-dark); }
+
+    .form-submit:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+    }
+
+    .form-submit .btn-loading { display: none; }
+
+    .form-submit.is-loading .btn-text { display: none; }
+    .form-submit.is-loading .btn-loading {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .spinner-circle {
+      animation: spin 0.8s linear infinite;
+      transform-origin: center;
+    }
+
+    /* Form messages */
+    .form-message {
+      display: none;
+      text-align: center;
+      padding: 40px 32px;
+      margin-top: 36px;
+    }
+
+    .form-message.is-visible { display: block; }
+
+    .form-message-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+
+    .form-success .form-message-icon {
+      background: rgba(46,204,113,0.15);
+      color: #2ecc71;
+    }
+
+    .form-error .form-message-icon {
+      background: rgba(231,76,60,0.15);
+      color: #e74c3c;
+    }
+
+    .form-message-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 18px;
+      font-weight: 500;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .form-message-text {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.5;
+    }
+
     /* ─── RESPONSIVE ─── */
     @media (max-width: 640px) {
       body { font-size: 17px; }
@@ -654,6 +845,8 @@
       .pull-quote { margin: 40px 0; padding: 24px 28px; }
       .cta-block { padding: 48px 28px; }
       footer { flex-direction: column; gap: 12px; text-align: center; }
+      .form-row-2col { grid-template-columns: 1fr; }
+      .reg-form-wrapper { margin-top: 28px; }
     }
   </style>
 </head>
@@ -824,7 +1017,89 @@
     <li>Action plan yang bisa langsung dijalankan minggu ini</li>
   </ul>
   <div class="cta-meta">📅 [Tanggal &amp; Waktu] &nbsp;&nbsp;·&nbsp;&nbsp; 💻 Online via Zoom &nbsp;&nbsp;·&nbsp;&nbsp; Gratis</div>
-  <a href="#" class="cta-btn">Daftar Sekarang — Seat Terbatas</a>
+
+  <!-- REGISTRATION FORM -->
+  <div class="reg-form-wrapper">
+    <div class="reg-form-header">
+      <div class="reg-form-title">Daftar Workshop Gratis</div>
+      <div class="reg-form-subtitle">Isi form di bawah — seat terbatas.</div>
+    </div>
+
+    <form id="registrationForm" novalidate>
+      <div class="form-row">
+        <div class="form-group">
+          <label for="fullName">Nama Lengkap <span class="required">*</span></label>
+          <input type="text" id="fullName" name="fullName" required placeholder="Nama lengkap Anda">
+        </div>
+      </div>
+
+      <div class="form-row form-row-2col">
+        <div class="form-group">
+          <label for="email">Email <span class="required">*</span></label>
+          <input type="email" id="email" name="email" required placeholder="email@contoh.com">
+        </div>
+        <div class="form-group">
+          <label for="phone">No. Telepon <span class="required">*</span></label>
+          <input type="tel" id="phone" name="phone" required placeholder="08xxxxxxxxxx">
+        </div>
+      </div>
+
+      <div class="form-row form-row-2col">
+        <div class="form-group">
+          <label for="company">Perusahaan / Organisasi</label>
+          <input type="text" id="company" name="company" placeholder="Nama perusahaan (opsional)">
+        </div>
+        <div class="form-group">
+          <label for="jobTitle">Jabatan / Posisi</label>
+          <input type="text" id="jobTitle" name="jobTitle" placeholder="Jabatan Anda (opsional)">
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="hearAbout">Dari mana Anda tahu workshop ini?</label>
+          <select id="hearAbout" name="hearAbout">
+            <option value="" disabled selected>— Pilih salah satu —</option>
+            <option value="Instagram">Instagram</option>
+            <option value="LinkedIn">LinkedIn</option>
+            <option value="Referral">Referral / Rekomendasi</option>
+            <option value="Google Search">Google Search</option>
+            <option value="Other">Lainnya</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-row">
+        <div class="form-group">
+          <label for="message">Pertanyaan / Pesan</label>
+          <textarea id="message" name="message" rows="3" placeholder="Ada pertanyaan sebelum workshop? (opsional)"></textarea>
+        </div>
+      </div>
+
+      <button type="submit" class="form-submit" id="submitBtn">
+        <span class="btn-text">Daftar Sekarang</span>
+        <span class="btn-loading" aria-hidden="true">
+          <svg width="20" height="20" viewBox="0 0 20 20" fill="none"><circle cx="10" cy="10" r="8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="40 20" class="spinner-circle"/></svg>
+          Mengirim...
+        </span>
+      </button>
+    </form>
+
+    <!-- Success message -->
+    <div class="form-message form-success" id="formSuccess">
+      <div class="form-message-icon">✓</div>
+      <div class="form-message-title">Pendaftaran berhasil!</div>
+      <div class="form-message-text">Kami akan menghubungi Anda segera melalui email. Cek juga folder spam Anda.</div>
+    </div>
+
+    <!-- Error message -->
+    <div class="form-message form-error" id="formError">
+      <div class="form-message-icon">!</div>
+      <div class="form-message-title">Terjadi kesalahan</div>
+      <div class="form-message-text" id="errorText">Silakan coba lagi dalam beberapa saat.</div>
+    </div>
+  </div>
+
   <div class="cta-partners">ActionCOACH · Daya Dimensi Indonesia · PT Dayalima Abisatya</div>
 </div>
 
@@ -837,11 +1112,87 @@
 </footer>
 
 <script>
+  // ─── Reading progress bar ───
   const progress = document.getElementById('progress');
   window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
     const docHeight = document.documentElement.scrollHeight - window.innerHeight;
     progress.style.width = (scrollTop / docHeight * 100) + '%';
+  });
+
+  // ─── Registration Form ───
+  // Replace this URL after deploying your Google Apps Script Web App
+  const FORM_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwK4HtvcQ-5Q1G62Z-UuZVDGrfwXuFYGhw14hc8OcBiB70oKRqKBB1jD8DNEf2-mLarrA/exec';
+
+  const form = document.getElementById('registrationForm');
+  const submitBtn = document.getElementById('submitBtn');
+  const successMsg = document.getElementById('formSuccess');
+  const errorMsg = document.getElementById('formError');
+  const errorText = document.getElementById('errorText');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    // Reset states
+    successMsg.classList.remove('is-visible');
+    errorMsg.classList.remove('is-visible');
+
+    // Remove previous invalid markers
+    form.querySelectorAll('.invalid').forEach(el => el.classList.remove('invalid'));
+
+    // Validate required fields
+    const fullName = form.fullName.value.trim();
+    const email = form.email.value.trim();
+    const phone = form.phone.value.trim();
+    let hasError = false;
+
+    if (!fullName) { form.fullName.classList.add('invalid'); hasError = true; }
+    if (!email || !email.includes('@')) { form.email.classList.add('invalid'); hasError = true; }
+    if (!phone) { form.phone.classList.add('invalid'); hasError = true; }
+
+    if (hasError) return;
+
+    // Collect data
+    const payload = {
+      fullName: fullName,
+      email: email,
+      phone: phone,
+      company: form.company.value.trim(),
+      jobTitle: form.jobTitle.value.trim(),
+      hearAbout: form.hearAbout.value,
+      message: form.message.value.trim()
+    };
+
+    // Loading state
+    submitBtn.classList.add('is-loading');
+    submitBtn.disabled = true;
+
+    try {
+      const response = await fetch(FORM_ENDPOINT, {
+        method: 'POST',
+        mode: 'no-cors', // Apps Script Web App requires no-cors from browser
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      // With no-cors, we can't read the response body.
+      // A successful fetch (no network error) means the request reached Google.
+      form.style.display = 'none';
+      successMsg.classList.add('is-visible');
+      form.reset();
+
+    } catch (err) {
+      errorText.textContent = 'Gagal mengirim data. Periksa koneksi internet Anda dan coba lagi.';
+      errorMsg.classList.add('is-visible');
+    } finally {
+      submitBtn.classList.remove('is-loading');
+      submitBtn.disabled = false;
+    }
+  });
+
+  // Remove invalid styling on input
+  form.querySelectorAll('input, select').forEach(field => {
+    field.addEventListener('input', () => field.classList.remove('invalid'));
   });
 </script>
 
